@@ -3,168 +3,168 @@ package ua.lviv.lgs.homework;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static void main(String[] args) {
 		read();
 	}
-	
+
 	public static void read() {
 		Months[] mon = Months.values();
 		Scanner scanner = new Scanner(System.in);
 		Seasons[] seas = Seasons.values();
-		
-		while(true) {
+
+		while (true) {
 			menu();
-			
-			switch(scanner.next()) {
-			case "1":{
+
+			switch (scanner.next()) {
+			case "1": {
 				System.out.println("Enter month");
 				scanner = new Scanner(System.in);
 				String month = scanner.next().toUpperCase();
-				
+
 				boolean flag = isMonthPresent(mon, month);
-				if(!flag) {
+				if (!flag) {
 					System.out.println("Month doesn`t exist");
 				}
 				System.out.println("Choose next step");
 				break;
-				}
-			case "2" :{
+			}
+			case "2": {
 				System.out.println("Enter season");
 				scanner = new Scanner(System.in);
 				String x = scanner.next().toUpperCase();
-				
+
 				boolean flag = false;
 				for (Months m : mon) {
-					if(m.getSeason().name().equals(x)) {
+					if (m.getSeason().name().equals(x)) {
 						flag = true;
 					}
 				}
 				if (flag) {
 					for (Months s1 : mon) {
-						if(s1.getSeason().toString().equalsIgnoreCase(x)) {
+						if (s1.getSeason().toString().equalsIgnoreCase(x)) {
 							System.out.println(s1);
 						}
 					}
 				}
-				if(!flag) {
+				if (!flag) {
 					System.out.println("No season");
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "3":{
+			case "3": {
 				System.out.println("Enter quantity of days");
 				scanner = new Scanner(System.in);
 				int i = scanner.nextInt();
-				
+
 				for (Months m : Months.values()) {
-					if(m.inDays == i) {
-						System.out.println(m.toString());
-					} 
-				}
-				System.out.println("Choose next step");
-				break;
-			}
-			case "4" :{
-				System.out.println("Enter quantity of days");
-				scanner = new Scanner(System.in);
-				int i = scanner.nextInt();
-				
-				for(Months m : Months.values()) {
-					if(m.inDays < i) {
+					if (m.inDays == i) {
 						System.out.println(m.toString());
 					}
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "5" :{
+			case "4": {
 				System.out.println("Enter quantity of days");
 				scanner = new Scanner(System.in);
 				int i = scanner.nextInt();
-				
-				for(Months m : Months.values()) {
-					if(m.inDays > i) {
+
+				for (Months m : Months.values()) {
+					if (m.inDays < i) {
 						System.out.println(m.toString());
 					}
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "6" : {
+			case "5": {
+				System.out.println("Enter quantity of days");
+				scanner = new Scanner(System.in);
+				int i = scanner.nextInt();
+
+				for (Months m : Months.values()) {
+					if (m.inDays > i) {
+						System.out.println(m.toString());
+					}
+				}
+				System.out.println("Choose next step");
+				break;
+			}
+			case "6": {
 				System.out.println("Enter season");
 				scanner = new Scanner(System.in);
 				String season = scanner.next().toUpperCase();
-				
+
 				boolean flagSeason = isSeasonPresent(seas, season);
-				if(flagSeason) {
+				if (flagSeason) {
 					Seasons s = Seasons.valueOf(season);
 					int ordinal = s.ordinal();
-					
-					if(ordinal == seas.length - 1) {
+
+					if (ordinal == seas.length - 1) {
 						ordinal = 0;
 						System.out.println(seas[ordinal]);
 					} else {
-						System.out.println("Next season is : " + seas[ordinal+1]);
+						System.out.println("Next season is : " + seas[ordinal + 1]);
 					}
 				}
-				if(!flagSeason) {
+				if (!flagSeason) {
 					System.out.println("No season, try again");
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "7" : {
+			case "7": {
 				System.out.println("Enter season");
 				scanner = new Scanner(System.in);
 				String season = scanner.next().toUpperCase();
-				
+
 				boolean flagSeason = isSeasonPresent(seas, season);
-				if(flagSeason) {
+				if (flagSeason) {
 					Seasons s = Seasons.valueOf(season);
 					int ordinal = s.ordinal();
-					
-					if(ordinal == seas.length + 1) {
+
+					if (ordinal == seas.length + 1) {
 						ordinal = 0;
 						System.out.println(seas[ordinal]);
 					} else {
-						System.out.println("Previous season is : " + seas[ordinal-1]);
+						System.out.println("Previous season is : " + seas[ordinal - 1]);
 					}
 				}
-				if(!flagSeason) {
+				if (!flagSeason) {
 					System.out.println("No season, try again");
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "8" : {
-				for(Months m : Months.values()) {
-					if(m.inDays % 2 == 0 ) {
+			case "8": {
+				for (Months m : Months.values()) {
+					if (m.inDays % 2 == 0) {
 						System.out.println(m.name() + " day = " + m.inDays);
 					}
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "9" : {
-				for(Months m : Months.values()) {
-					if(m.inDays % 2 != 0 ) {
+			case "9": {
+				for (Months m : Months.values()) {
+					if (m.inDays % 2 != 0) {
 						System.out.println(m.name() + " day = " + m.inDays);
 					}
 				}
 				System.out.println("Choose next step");
 				break;
 			}
-			case "10" : {
+			case "10": {
 				System.out.println("Enter month");
 				scanner = new Scanner(System.in);
 				String month = scanner.next().toUpperCase();
-				
+
 				boolean flag = isMonthPresent(mon, month);
-				if(flag) {
-					for(Months m : Months.values()) {
-						if(m.inDays % 2 == 0 ) {
+				if (flag) {
+					for (Months m : Months.values()) {
+						if (m.inDays % 2 == 0) {
 							System.out.println(m.name() + " has an even number of days.");
 						} else {
 							System.out.println(m.name() + " has an odd number of days.");
@@ -174,9 +174,10 @@ public class Main {
 				System.out.println("Choose next step");
 				break;
 			}
-		}	
+			}
+		}
 	}
-}
+
 	private static boolean isMonthPresent(Months[] mon, String month) {
 		boolean flag = false;
 		for (Months m : mon) {
@@ -187,16 +188,18 @@ public class Main {
 		}
 		return flag;
 	}
+
 	private static boolean isSeasonPresent(Seasons[] seas, String season) {
 		boolean flagSeason = false;
 		for (Seasons s : seas) {
-			if(s.name().equals(season)) {
+			if (s.name().equals(season)) {
 				System.out.println("Season exist");
 				flagSeason = true;
 			}
 		}
 		return flagSeason;
 	}
+
 	static void menu() {
 		System.out.println("Нажми 1, чтобы проверить существует ли такой месяц");
 		System.out.println("Нажми 2, чтобы вывести все месяцы этого времени года");
